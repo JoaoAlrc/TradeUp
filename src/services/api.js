@@ -8,7 +8,6 @@ const api = create({
 
 api.addAsyncRequestTransform(request => async () => {
     const token = await AsyncStorage.getItem('@TradeUp:token');
-
     if (token) request.headers.Authorization = `Bearer ${token}`;
 });
 
@@ -40,7 +39,8 @@ const returnResponse = (response) => {
 }
 
 export const AuthAPI = {
-    login: async (email, password) => {
+    login: async (values) => {
+        console.warn('values', values)
         try {
             const config = {
                 headers: {
@@ -48,11 +48,10 @@ export const AuthAPI = {
                     'Accept': 'application/json'
                 }
             }
-            const body = {
-                "email": email,
-                "password": password
-            }
+            const body = values
+            console.warn('body', body)
             const response = await api.post('/api/login', body, config).then(returnResponse)
+            console.warn('response', response)
             return response
         } catch (error) {
             return error

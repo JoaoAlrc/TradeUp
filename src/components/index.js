@@ -1,3 +1,4 @@
+import FooterButton from './footerButton'
 import ItemList from './itemList'
 
-export { ItemList };
+export { FooterButton, ItemList };

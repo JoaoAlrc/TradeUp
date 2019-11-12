@@ -6,6 +6,7 @@ import { UsersAPI } from '../../services/api'
 import { ItemList } from '../../components'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ListNavOptions } from './NavOptions'
+import AsyncStorage from '@react-native-community/async-storage';
 
 function ListUsers(props) {
     const [listUsers, setListUsers] = useState([]);

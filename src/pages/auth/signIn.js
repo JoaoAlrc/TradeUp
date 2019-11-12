@@ -1,20 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Text } from 'react-native';
-// import signIn from '../../services/api'
+import { View, Text, StatusBar, ActivityIndicator } from 'react-native';
+import { AuthAPI } from '../../services/api';
+import { withNavigation } from 'react-navigation';
+import {
+    Container,
+    Logo,
+    Input,
+    ErrorMessage,
+    Button,
+    ButtonText,
+    SignUpLink,
+    SignUpLinkText,
+} from '../../components/styles'
+import { withFormik } from 'formik';
+import * as Yup from 'yup';
+import AsyncStorage from '@react-native-community/async-storage';
 
-function SignInScreen() {
-    const [errorMessage, setErrorMessage] = useState('')
-
-    function login() {
-        // signIn().then(res => console.warn('s', res))
-    }
-
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>{errorMessage}</Text>
-            <Button title="btn" onPress={login} />
-        </View>
-    );
+const setToken = async (props) => {
 }
 
-export default SignInScreen;
+const SignIn = (props) => (
+    <Container>
+        <Logo source={require('../../images/logo.png')} resizeMode="contain" logoHeight={"30%"} logoMgBtm={"40px"} />
+        <Input
+            placeholder="E-mail"
+            placeholderTextColor="#595959"
+            value={props.values.email}
+            onChangeText={text => props.setFieldValue('email', text)}
+            autoCapitalize="none"
+            autoCorrect={false}
+        />
+        {props.touched.email
+            && props.errors.email
+            && <ErrorMessage>{props.errors.email}</ErrorMessage>}
+        <Input
+            placeholder="Senha"
+            placeholderTextColor="#595959"
+            value={props.values.password}
+            onChangeText={text => props.setFieldValue('password', text)}
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
+        />
+        {props.touched.password
+            && props.errors.password
+            && <ErrorMessage>{props.errors.password}</ErrorMessage>}
+        <Button onPress={props.handleSubmit}>
+            <ButtonText>Entrar</ButtonText>
+        </Button>
+        <SignUpLink
+        //  onPress={this.handleCreateAccountPress}
+        >
+            <SignUpLinkText>Criar conta.</SignUpLinkText>
+        </SignUpLink>
+        {props.errors.message && <ErrorMessage>{props.errors.message}</ErrorMessage>}
+        {props.isSubmitting && <ActivityIndicator />}
+    </Container>
+);
+
+SignIn.navigationOptions = {
+    header: null,
+}
+
+export default withNavigation(withFormik({
+    mapPropsToValues: () => ({ email: '', password: '' }),
+
+    validationSchema: Yup.object().shape({
+        email: Yup.string()
+            .email('Digite um e-mail válido')
+            .required('Preencha o campo de e-mail'),
+        password: Yup.string()
+            .min(6, 'A senha deve ter no mínimo 6 caracteres')
+            .required('Preencha o campo de senha'),
+    }),
+
+    handleSubmit: (values, { setSubmitting, setErrors, ...props }) => {
+        console.warn('res', values)
+        AuthAPI.login(values).then(async res => {
+            console.warn(res)
+            if (res.token) {
+                console.warn(res.token)
+                await AsyncStorage.setItem('@TradeUp:token', res.token)
+                props.props.navigation.navigate('App');
+            } else {
+                setSubmitting(false);
+                setErrors({ message: "Verifique suas credenciais" });
+            }
+        })
+            .catch(err => {
+                setSubmitting(false);
+                setErrors({ message: err.message });
+            });
+    }
+})(SignIn));

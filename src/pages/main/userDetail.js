@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { useSelector } from 'react-redux'
 import { DetailNavOptions } from './NavOptions'
+import { FooterButton } from '../../components'
 
 function UserDetail() {
-    const [errorMessage, setErrorMessage] = useState('')
     const [follow, setFollow] = useState(false)
     const user = useSelector(state => state.user);
-    console.warn("toma carai", user)
 
     return (
         <View style={styles.card}>
@@ -20,13 +19,20 @@ function UserDetail() {
                     <Text style={styles.subTextToFollow}>Envie uma solicitação de amizade para que possam compartilhar informações.</Text>
 
                 </View>
-                {follow === false ? <TouchableOpacity style={styles.followButton} onPress={() => setFollow(true)}>
-                    <Text style={styles.followButtonText}>Enviar Solicitação de Amizade</Text>
-                </TouchableOpacity> :
-                    <TouchableOpacity style={styles.followingButton} onPress={() => this.clickEventListener(item)}>
-                        <Text style={styles.followButtonText}>Solicitação Encaminhada!</Text>
-                    </TouchableOpacity>}
+
             </View>
+            {follow === false ? <FooterButton
+                style={styles.followButton}
+                textStyle={styles.followButtonText}
+                onPress={() => setFollow(true)}
+                title={'Enviar Solicitação de Amizade'}
+            /> :
+                <FooterButton
+                    style={styles.followingButton}
+                    textStyle={styles.followingButtonText}
+                    onPress={() => Alert.alert(`A solicitação foi encaminhada, ${user.first_name} pode ou não aceitar seu pedido.`)}
+                    title={'Solicitação Encaminhada!'}
+                />}
         </View>
     );
 }
@@ -47,10 +53,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.37,
         shadowRadius: 7.49,
         elevation: 12,
-
+        flex: 1,
         marginVertical: 5,
         backgroundColor: "white",
-        flexBasis: '98%',
         marginHorizontal: 5,
     },
     cardFooter: {
@@ -102,30 +107,15 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     followButton: {
-        flex: 1,
-        position: 'absolute',
-        bottom: 0,
-        height: 40,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 30,
         backgroundColor: "#00BFFF"
     },
     followingButton: {
-        marginTop: 10,
-        height: 40,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 30,
         backgroundColor: "#EFEFEF",
-        color: "#008dff",
     },
     followButtonText: {
         color: "#FFFFFF",
-        fontSize: 20,
+    },
+    followingButtonText: {
+        color: "#008dff",
     }
 });     

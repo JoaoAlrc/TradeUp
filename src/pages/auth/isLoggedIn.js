@@ -10,9 +10,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 function IsLoggedIn(props) {
     useEffect(() => {
-        const userToken = AsyncStorage.getItem('@TradeUp:token');
-        // console.alert('a')
-        props.navigation.navigate(userToken ? 'App' : 'Auth');
+        async function UserIsLogged() {
+            const userToken = await AsyncStorage.getItem('@TradeUp:token');
+            props.navigation.navigate(userToken ? 'App' : 'Auth');
+        }
+        UserIsLogged();
     }, [])
 
     return (
