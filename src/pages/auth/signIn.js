@@ -49,7 +49,7 @@ const SignIn = (props) => (
             <ButtonText>Entrar</ButtonText>
         </Button>
         <SignUpLink
-        //  onPress={this.handleCreateAccountPress}
+        //  onPress={handleCreateAccountPress}
         >
             <SignUpLinkText>Criar conta.</SignUpLinkText>
         </SignUpLink>
@@ -75,11 +75,8 @@ export default withNavigation(withFormik({
     }),
 
     handleSubmit: (values, { setSubmitting, setErrors, ...props }) => {
-        console.warn('res', values)
         AuthAPI.login(values).then(async res => {
-            console.warn(res)
             if (res.token) {
-                console.warn(res.token)
                 await AsyncStorage.setItem('@TradeUp:token', res.token)
                 props.props.navigation.navigate('App');
             } else {

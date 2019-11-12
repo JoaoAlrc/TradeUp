@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, ActivityIndicator, FlatList, StyleSheet, Image } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { NameListText, EmailListText, AvatarList, ListItemContainerTexts } from '../styles'
 
 const ItemList = (props) => {
 
@@ -10,15 +11,15 @@ const ItemList = (props) => {
 
     return (
         <TouchableOpacity onPress={onPressItem} style={styles.container}>
-            <Image source={{ uri: props.data.avatar }} style={styles.photo} />
-            <View style={styles.container_text}>
-                <Text style={styles.name}>
+            <AvatarList source={{ uri: props.data.avatar }} />
+            <ListItemContainerTexts>
+                <NameListText>
                     {props.data.first_name}
-                </Text>
-                <Text style={styles.email}>
+                </NameListText>
+                <EmailListText>
                     {props.data.email}
-                </Text>
-            </View>
+                </EmailListText>
+            </ListItemContainerTexts>
             <Icon name="chevron-right" style={{ alignSelf: 'center' }} size={20} color="#008dff" />
         </TouchableOpacity>
     );
@@ -38,25 +39,5 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#FFF',
         elevation: 10,
-    },
-    name: {
-        fontSize: 18,
-        color: '#008dff',
-    },
-    container_text: {
-        flex: 1,
-        flexDirection: 'column',
-        marginLeft: 12,
-        justifyContent: 'center',
-    },
-    email: {
-        fontSize: 14,
-        fontStyle: 'italic',
-        color: '#008dff',
-    },
-    photo: {
-        height: 70,
-        width: 70,
-        borderRadius: 5
-    },
+    }
 });

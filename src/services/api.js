@@ -40,7 +40,6 @@ const returnResponse = (response) => {
 
 export const AuthAPI = {
     login: async (values) => {
-        console.warn('values', values)
         try {
             const config = {
                 headers: {
@@ -49,9 +48,7 @@ export const AuthAPI = {
                 }
             }
             const body = values
-            console.warn('body', body)
             const response = await api.post('/api/login', body, config).then(returnResponse)
-            console.warn('response', response)
             return response
         } catch (error) {
             return error

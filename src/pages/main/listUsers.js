@@ -4,8 +4,9 @@ import { NavigationActions } from 'react-navigation';
 import { useDispatch } from 'react-redux'
 import { UsersAPI } from '../../services/api'
 import { ItemList } from '../../components'
+import { TitleUsersList } from '../../components/styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ListNavOptions } from './NavOptions'
+import { ListNavOptions } from '../../components/NavOptions'
 import AsyncStorage from '@react-native-community/async-storage';
 
 function ListUsers(props) {
@@ -47,18 +48,14 @@ function ListUsers(props) {
 
     const renderHeader = () => {
         return (
-            <View>
-                <Text style={styles.title}>Lista de Usuários</Text>
-            </View>
+            <TitleUsersList>Rede de Usuários TradeUp</TitleUsersList>
         );
     };
 
     const renderFooter = () => {
         if (!loading) return null;
         return (
-            <View style={styles.loading}>
-                <ActivityIndicator size="large" color="#008dff" />
-            </View>
+            <ActivityIndicator size="large" color="#008dff" />
         );
     };
 
@@ -93,10 +90,9 @@ const styles = StyleSheet.create({
         color: '#008dff',
         marginLeft: 26,
         marginTop: 10,
-        marginBottom: 'auto',
+        marginBottom: 10,
         fontWeight: 'bold',
         fontSize: 28,
-        position: 'relative'
     },
     list: {
         paddingHorizontal: 10,

@@ -24,9 +24,13 @@ const servicesDrawer = createDrawerNavigator({
 },
     {
         contentComponent: (props) => (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: '#008dff', display: 'flex', justifyContent: 'center' }}>
                 <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-                    <DrawerNavigatorItems {...props} />
+                    {/* <DrawerNavigatorItems {...props} /> */}
+                    <Image
+                        style={{ height: 150, width: 150, marginLeft: 'auto', marginRight: 'auto' }}
+                        source={require('../images/logo.png')}
+                    />
                     <Button title="Logout" onPress={async () => {
                         await AsyncStorage.removeItem('@TradeUp:token')
                         props.navigation.navigate("Auth")

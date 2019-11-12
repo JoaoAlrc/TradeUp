@@ -7,7 +7,7 @@ const ListNavOptions = ({ navigation }) => ({
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Image
                 style={{ height: 60, width: 60 }}
-                source={require('../../images/logo.png')} />
+                source={require('../images/logo.png')} />
         </View>
     ),
     headerStyle: {
@@ -29,9 +29,9 @@ const ListNavOptions = ({ navigation }) => ({
 const DetailNavOptions = ({ navigation }) => ({
     headerTitle: (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Image
+            {/* <Image
                 style={{ height: 60, width: 60 }}
-                source={require('../../images/logo.png')} />
+                source={require('../images/logo.png')} /> */}
         </View>
     ),
     headerStyle: {
