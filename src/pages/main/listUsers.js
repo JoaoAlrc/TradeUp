@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableHighlight, Text, ActivityIndicator, FlatList, StyleSheet, Image } from 'react-native';
+import { View, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { useDispatch } from 'react-redux'
 import { UsersAPI } from '../../services/api'
-import { ItemList } from '../../components'
-import { TitleUsersList } from '../../components/styles'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { ListNavOptions } from '../../components/NavOptions'
-import AsyncStorage from '@react-native-community/async-storage';
+import { ItemList, TitleUsersList, ListNavOptions } from '../../components'
 
 function ListUsers(props) {
     const [listUsers, setListUsers] = useState([]);

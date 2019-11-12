@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, TouchableHighlight, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -29,9 +29,9 @@ const ListNavOptions = ({ navigation }) => ({
 const DetailNavOptions = ({ navigation }) => ({
     headerTitle: (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            {/* <Image
+            <Image
                 style={{ height: 60, width: 60 }}
-                source={require('../images/logo.png')} /> */}
+                source={require('../images/logo.png')} />
         </View>
     ),
     headerStyle: {

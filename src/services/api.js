@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { create } from 'apisauce';
 

@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {
-    ActivityIndicator,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native'
+import React, { useEffect } from 'react';
+import { ActivityIndicator, StyleSheet, } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage';
-// import signIn from '../../services/api'
 
 function IsLoggedIn(props) {
     useEffect(() => {
@@ -18,9 +12,7 @@ function IsLoggedIn(props) {
     }, [])
 
     return (
-        <View>
-            <ActivityIndicator size="large" color="#1c64ff" />
-        </View>
+        <ActivityIndicator size="large" color="#008dff" />
     );
 }
 

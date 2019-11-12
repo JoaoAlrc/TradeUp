@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Image, View, SafeAreaView, Button } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator, DrawerNavigatorItems } from 'react-navigation-drawer';
-// import SafeAreaView from 'react-native-safe-area-view'
-import api from './api'
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { SignInScreen, IsLoggedIn, ListUsers, UserDetail } from '../pages'
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -26,7 +24,6 @@ const servicesDrawer = createDrawerNavigator({
         contentComponent: (props) => (
             <View style={{ flex: 1, backgroundColor: '#008dff', display: 'flex', justifyContent: 'center' }}>
                 <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-                    {/* <DrawerNavigatorItems {...props} /> */}
                     <Image
                         style={{ height: 150, width: 150, marginLeft: 'auto', marginRight: 'auto' }}
                         source={require('../images/logo.png')}

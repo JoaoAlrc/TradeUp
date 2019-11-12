@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StatusBar, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { AuthAPI } from '../../services/api';
 import { withNavigation } from 'react-navigation';
-import {
-    Container,
-    Logo,
-    Input,
-    ErrorMessage,
-    Button,
-    ButtonText,
-    SignUpLink,
-    SignUpLinkText,
-} from '../../components/styles'
+import { Container, Logo, Input, ErrorMessage, Button, ButtonText, SignUpLink, SignUpLinkText } from '../../components'
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import AsyncStorage from '@react-native-community/async-storage';
-
-const setToken = async (props) => {
-}
 
 const SignIn = (props) => (
     <Container>
@@ -54,7 +42,7 @@ const SignIn = (props) => (
             <SignUpLinkText>Criar conta.</SignUpLinkText>
         </SignUpLink>
         {props.errors.message && <ErrorMessage>{props.errors.message}</ErrorMessage>}
-        {props.isSubmitting && <ActivityIndicator />}
+        {props.isSubmitting && <ActivityIndicator color="#008dff" />}
     </Container>
 );
 

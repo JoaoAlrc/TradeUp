@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NameListText, EmailListText, AvatarList, ListItemContainerTexts } from '../styles'
+import { NameListText, EmailListText, AvatarList, ListItemContainerTexts } from '../'
 
 const ItemList = (props) => {
 
