@@ -67,7 +67,6 @@ borderWidth: 3px;
 `;
 
 // Inputs and button
-
 const Input = styled.TextInput.attrs({
     placeholderTextColor: "#fff"
 })`
@@ -80,7 +79,8 @@ marginBottom: 15px;
 marginHorizontal: 20px;
 fontSize: 16px;
 color: rgb(255,255,255);
-elevation: 12;
+shadowColor: black;
+shadowOpacity: 0.3;
 `;
 
 const Button = styled.TouchableHighlight`

@@ -39,5 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#FFF',
         elevation: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.3
     }
 });
