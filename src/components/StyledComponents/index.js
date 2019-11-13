@@ -38,7 +38,7 @@ padding: 20px
 `;
 
 const CardTextsContainer = styled.View`
-paddingVertical: 17px;
+paddingVertical: 30px;
 paddingHorizontal: 16px;
 `;
 
@@ -57,9 +57,9 @@ borderRadius: 5px;
 `;
 
 const AvatarDetails = styled.Image`
-height: 150px;
-width: 150px;
-marginTop: 20px;
+height: 135px;
+width: 135px;
+marginTop: 0px;
 borderRadius: 100px;
 alignSelf: center;
 borderColor: #008dff;
@@ -79,6 +79,7 @@ marginBottom: 15px;
 marginHorizontal: 20px;
 fontSize: 16px;
 color: rgb(255,255,255);
+elevation: 5;
 shadowColor: black;
 shadowOpacity: 0.3;
 `;
@@ -171,7 +172,8 @@ const CardTexts = styled.Text`
 fontSize: 16px;
 textAlign: center;
 color: #008dff;
-padding: 5px;
+marginTop: auto;
+marginBottom: auto; 
 `;
 
 const SignUpLinkText = styled.Text`
